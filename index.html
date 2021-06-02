@@ -19,9 +19,9 @@
   <link href="./index_files/cover.css" rel="stylesheet">
 </head>
 
-<body class="text-center">
+<body>
 
-  <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+  <div class="d-flex h-100 p-3 mx-auto flex-column">
     <header class="masthead mb-auto fixed-top">
       <div class="inner">
         <h3 class="masthead-brand">Plotting Logger</h3>
@@ -44,36 +44,43 @@
         <div id="plotter1-logs" class="loading">
         </div>
       </div>
+      <hr>
       <div id="plotter2" class="pt-5">
         <h1 class="cover-heading">Plotter 2 - Logs</h1>
         <div id="plotter2-logs" class="loading">
         </div>
       </div>
+      <hr>
       <div id="plotter3" class="pt-5">
         <h1 class="cover-heading">Plotter 3 - Logs</h1>
         <div id="plotter3-logs" class="loading">
         </div>
       </div>
+      <hr>
       <div id="plotter4" class="pt-5">
         <h1 class="cover-heading">Plotter 4 - Logs</h1>
         <div id="plotter4-logs" class="loading">
         </div>
       </div>
+      <hr>
       <div id="plotter5" class="pt-5">
         <h1 class="cover-heading">Plotter 5 - Logs</h1>
         <div id="plotter5-logs" class="loading">
         </div>
       </div>
+      <hr>
       <div id="plotter6" class="pt-5">
         <h1 class="cover-heading">Plotter 6 - Logs</h1>
         <div id="plotter6-logs" class="loading">
         </div>
       </div>
+      <hr>
       <div id="plotter7" class="pt-5">
         <h1 class="cover-heading">Plotter 7 - Logs</h1>
         <div id="plotter7-logs" class="loading">
         </div>
       </div>
+      <hr>
       <div id="plotter8" class="pt-5">
         <h1 class="cover-heading">Plotter 8 - Logs</h1>
         <div id="plotter8-logs" class="loading">
@@ -109,9 +116,12 @@
         let plotterDiv = document.getElementById("plotter" + (i + 1) + "-logs");
         let plotterLogs = await getLogsFromIP(plottersIPs[i]);
         plotterDiv.classList.remove("loading");
-        let logs = document.createElement("p");
-        logs.innerHTML = answer;
-        plotterDiv.appendChild(logs);
+        let plottersLogsArray = plotterLogs.split('\n');
+        plottersLogsArray.forEach(element => {
+          let logs = document.createElement("p");
+          logs.innerHTML = element;
+          plotterDiv.appendChild(logs);
+        });
       }
     }
 
