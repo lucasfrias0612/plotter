@@ -25,7 +25,7 @@
     <header class="masthead mb-auto fixed-top">
       <div class="inner">
         <h3 class="masthead-brand">Plotting Logger</h3>
-        <nav class="nav nav-masthead justify-content-center">
+        <nav class="nav nav-masthead justify-content-center p-2">
           <a class="nav-link" href="#plotter1">Plotter 1</a>
           <a class="nav-link" href="#plotter2">Plotter 2</a>
           <a class="nav-link" href="#plotter3">Plotter 3</a>
@@ -104,10 +104,10 @@
     main();
 
     async function main() {
-      const NUM_OF_PLOTS=8;
-      for (let i = 0; i < NUM_OF_PLOTS; i++) {
+      const plottersIPs = ['198.211.108.141', '134.209.124.103', '161.35.108.31', '161.35.53.152', '162.243.170.117', '143.198.163.207', '198.199.80.134', '208.68.37.244'];
+      for (let i = 0; i < plottersIPs.length; i++) {
         let plotterDiv = document.getElementById("plotter" + (i + 1) + "-logs");
-        let plotterLogs = await getLogsFromIP("http://plotter" +(i + 1) + ".lucasfrias.com.ar/logfile");
+        let plotterLogs = await getLogsFromIP(plottersIPs[i]);
         plotterDiv.classList.remove("loading");
         let logs = document.createElement("p");
         logs.innerHTML = answer;
@@ -115,16 +115,16 @@
       }
     }
 
-    async function getLogsFromIP(host) {
-      let response = await fetch(host, {
+    async function getLogsFromIP(ip) {
+      let response = await fetch("http://" + ip + "/logfile", {
         method: 'GET',
         headers: {
-          'Access-Control-Allow-Origin':'https://lucasfrias0612.github.io/'
+          'Access-Control-Allow-Origin': '*'
         }
       });
 
       if (response.status != 200) {
-        throw new Error("Server Error at  IP: " + IP);
+        throw new Error("Server Error at  IP: " + ip);
       }
 
       // read response stream as text
