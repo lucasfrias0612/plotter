@@ -28,6 +28,7 @@ html,
 body {
   height: 100%;
   background-color: #333;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -107,4 +108,28 @@ body {
  */
 .mastfoot {
   color: rgba(255, 255, 255, .5);
+}
+
+
+/*
+ * Plotter loading
+ */
+.loading{width: 50px;
+  height: 50px;
+  border: 10px solid #eee;
+  border-top: 10px solid #666;
+  border-radius: 50%;
+  animation-name: girar;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  margin: auto;
+}
+@keyframes girar {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg);
+  }
 }
