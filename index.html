@@ -113,15 +113,19 @@
     async function main() {
       const plottersIPs = ['198.211.108.141', '134.209.124.103', '161.35.108.31', '161.35.53.152', '162.243.170.117', '143.198.163.207', '198.199.80.134', '208.68.37.244'];
       for (let i = 0; i < plottersIPs.length; i++) {
-        let plotterDiv = document.getElementById("plotter" + (i + 1) + "-logs");
-        let plotterLogs = await getLogsFromIP(plottersIPs[i]);
-        plotterDiv.classList.remove("loading");
-        let plottersLogsArray = plotterLogs.split('\n');
-        plottersLogsArray.forEach(element => {
-          let logs = document.createElement("p");
-          logs.innerHTML = element;
-          plotterDiv.appendChild(logs);
-        });
+        try {
+          let plotterDiv = document.getElementById("plotter" + (i + 1) + "-logs");
+          let plotterLogs = await getLogsFromIP(plottersIPs[i]);
+          plotterDiv.classList.remove("loading");
+          let plottersLogsArray = plotterLogs.split('\n');
+          plottersLogsArray.forEach(element => {
+            let logs = document.createElement("p");
+            logs.innerHTML = element;
+            plotterDiv.appendChild(logs);
+          });
+        } catch (error) {
+          console.error(error);
+        }
       }
     }
 
