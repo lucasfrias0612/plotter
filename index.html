@@ -19,9 +19,9 @@
   <link href="./index_files/cover.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="text-center">
 
-  <div class="d-flex h-100 p-3 mx-auto flex-column">
+  <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
     <header class="masthead mb-auto fixed-top">
       <div class="inner">
         <h3 class="masthead-brand">Plotting Logger</h3>
@@ -41,49 +41,49 @@
     <main role="main" class="inner cover">
       <div id="plotter1" class="pt-5">
         <h1 class="cover-heading">Plotter 1 - Logs</h1>
-        <div id="plotter1-logs" class="loading">
+        <div id="plotter1-logs">
         </div>
       </div>
       <hr>
       <div id="plotter2" class="pt-5">
         <h1 class="cover-heading">Plotter 2 - Logs</h1>
-        <div id="plotter2-logs" class="loading">
+        <div id="plotter2-logs">
         </div>
       </div>
       <hr>
       <div id="plotter3" class="pt-5">
         <h1 class="cover-heading">Plotter 3 - Logs</h1>
-        <div id="plotter3-logs" class="loading">
+        <div id="plotter3-logs">
         </div>
       </div>
       <hr>
       <div id="plotter4" class="pt-5">
         <h1 class="cover-heading">Plotter 4 - Logs</h1>
-        <div id="plotter4-logs" class="loading">
+        <div id="plotter4-logs">
         </div>
       </div>
       <hr>
       <div id="plotter5" class="pt-5">
         <h1 class="cover-heading">Plotter 5 - Logs</h1>
-        <div id="plotter5-logs" class="loading">
+        <div id="plotter5-logs">
         </div>
       </div>
       <hr>
       <div id="plotter6" class="pt-5">
         <h1 class="cover-heading">Plotter 6 - Logs</h1>
-        <div id="plotter6-logs" class="loading">
+        <div id="plotter6-logs">
         </div>
       </div>
       <hr>
       <div id="plotter7" class="pt-5">
         <h1 class="cover-heading">Plotter 7 - Logs</h1>
-        <div id="plotter7-logs" class="loading">
+        <div id="plotter7-logs">
         </div>
       </div>
       <hr>
       <div id="plotter8" class="pt-5">
         <h1 class="cover-heading">Plotter 8 - Logs</h1>
-        <div id="plotter8-logs" class="loading">
+        <div id="plotter8-logs">
         </div>
       </div>
     </main>
@@ -115,14 +115,12 @@
       for (let i = 0; i < plottersIPs.length; i++) {
         try {
           let plotterDiv = document.getElementById("plotter" + (i + 1) + "-logs");
-          let plotterLogs = await getLogsFromIP(plottersIPs[i]);
-          plotterDiv.classList.remove("loading");
-          let plottersLogsArray = plotterLogs.split('\n');
-          plottersLogsArray.forEach(element => {
-            let logs = document.createElement("p");
-            logs.innerHTML = element;
-            plotterDiv.appendChild(logs);
-          });
+          let aElement = document.createElement("a");
+          aElement.setAttribute("href","http://"+plottersIPs[i]+"/logfile");
+          aElement.setAttribute("class","btn btn-lg btn-secondary");
+          aElement.innerHTML="Ver logs";
+          plotterDiv.appendChild(aElement);
+          
         } catch (error) {
           console.log(error);
         }
