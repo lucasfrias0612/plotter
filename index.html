@@ -130,7 +130,7 @@
     }
 
     async function getLogsFromIP(ip) {
-      let fetchConfig = { method: 'GET', headers: { 'Access-Control-Allow-Origin': ip } };
+      let fetchConfig = { method: 'GET', mode: 'no-cors', headers: { 'Access-Control-Allow-Origin': ip } };
       let response = await fetch("http://" + ip + "/logfile", fetchConfig);
 
       if (response.status != 200) {
