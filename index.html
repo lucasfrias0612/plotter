@@ -124,18 +124,14 @@
             plotterDiv.appendChild(logs);
           });
         } catch (error) {
-          console.error(error);
+          console.log(error);
         }
       }
     }
 
     async function getLogsFromIP(ip) {
-      let response = await fetch("http://" + ip + "/logfile", {
-        method: 'GET',
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        }
-      });
+      let fetchConfig = { method: 'GET', headers: { 'Access-Control-Allow-Origin': ip } };
+      let response = await fetch("http://" + ip + "/logfile", fetchConfig);
 
       if (response.status != 200) {
         throw new Error("Server Error at  IP: " + ip);
